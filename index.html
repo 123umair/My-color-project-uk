@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .main {
+            background-color: rgb(48, 108, 161);
+            height: 280px;
+            width: 500px;
+            text-align: center;
+            margin: 0 auto;
+            /* padding-top:5px; */
+            box-shadow: inset 2px 2px rgb(182, 189, 197);
+            border-radius: 10px;
+        }
+
+        .namebox {
+            background-color: aliceblue;
+            width: 50%;
+            margin: 0 auto;
+            font-size: 1.2em;
+            padding-top: 2px;
+            height: 30px;
+            border-radius: 10px;
+            box-shadow: inset 1px 1px black;
+            display: block;
+        }
+
+        .colorbox {
+            height: 120px;
+            width: 90%;
+            background-color: white;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: inset 2px 2px 2px blue;
+        }
+
+        #change {
+            margin-top: 10px;
+            height: 30px;
+            width: 100px;
+            font-size: 1.1rem;
+            box-shadow: 2px 2px black;
+            border-radius: 20px;
+        }
+
+        body {
+            background-color: #6c8a78;
+        }
+
+        .maincont {
+            background-color: rgb(48, 108, 161);
+            height: 280px;
+            width: 500px;
+            text-align: center;
+            margin: 0 auto;
+            /* padding-top:5px; */
+            box-shadow: inset 2px 2px rgb(182, 189, 197);
+            border-radius: 10px;
+        }
+
+        .nameboxofcolor {
+            background-color: aliceblue;
+            width: 50%;
+            margin: 0 auto;
+            font-size: 1.2em;
+            padding-top: 2px;
+            height: 30px;
+            border-radius: 10px;
+            box-shadow: inset 1px 1px black;
+            display: block;
+        }
+
+        .colorcontainer {
+            height: 120px;
+            width: 90%;
+            background-color: white;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: inset 2px 2px 2px blue;
+        }
+
+        #start {
+            margin-top: 10px;
+            height: 30px;
+            width: 100px;
+            font-size: 1.1rem;
+            box-shadow: 2px 2px black;
+            border-radius: 20px;
+        }
+        #stop {
+            margin-top: 10px;
+            height: 30px;
+            width: 100px;
+            font-size: 1.1rem;
+            box-shadow: 2px 2px black;
+            border-radius: 20px;
+        }
+
+    </style>
+    <title>random color with name and with background</title>
+</head>
+
+<body>
+    <div class="main">
+        <h1>check color and its code here</h1>
+        <div class="namebox">
+
+        </div>
+        <div class="colorbox">
+
+
+        </div>
+        <button id="change">change</button>
+
+    </div>
+
+
+
+
+
+
+    <div class="maincont">
+        <h2>Continously Changing color</h2>
+        <div class="nameboxofcolor">
+
+        </div>
+        <div class="colorcontainer">
+            
+
+        </div>
+        <button id="start">start</button>
+        <button id="stop">stop</button>
+    </div>
+
+    </div>
+
+
+</body>
+
+</html>
+<script>
+    // first generate a randome color
+    let intervalid ;
+    function randomcolor() {
+        let hex = '0123456789ABSDEF';
+        let color = '#';
+        // now loop
+        for (let i = 0; i < 6; i++) {
+            color += hex[Math.floor(Math.random() * 16)]
+        }
+        return color;
+    }
+
+    function changebgcolor() {
+        document.querySelector('.colorbox').style.backgroundColor = randomcolor();
+        document.querySelector('.namebox').innerHTML = `<span>${randomcolor()}</span>`
+    }
+    document.querySelector('#change').addEventListener('click', changebgcolor)
+ 
+    // now for continous function
+
+
+function colorChange(){
+    if(!intervalid){intervalid =   setInterval(change,1000);}
+    function change(){
+    document.querySelector('.colorcontainer').style.backgroundColor = randomcolor();
+        document.querySelector('.nameboxofcolor').innerHTML = `<span>${randomcolor()}</span>`
+    }
+
+}
+// let stopchange = function stop(){
+//      clearInterval(intervalid);
+
+// }
+document.querySelector('#start').addEventListener('click',colorChange)
+document.querySelector('#stop').addEventListener('click',function(){
+    clearInterval(intervalid);
+    //for value overriden we null the these interval id after stop
+    intervalid = null;
+
+})
+
+</script>
