@@ -146,6 +146,7 @@
 <script>
     // first generate a randome color
     let intervalid ;
+    let colorsbg;
     function randomcolor() {
         let hex = '0123456789ABSDEF';
         let color = '#';
@@ -157,8 +158,9 @@
     }
 
     function changebgcolor() {
-        document.querySelector('.colorbox').style.backgroundColor = randomcolor();
-        document.querySelector('.namebox').innerHTML = `<span>${randomcolor()}</span>`
+        colorsbg=randomcolor();
+        document.querySelector('.colorbox').style.backgroundColor = colorsbg;
+        document.querySelector('.namebox').innerHTML = `<span>${colorsbg}</span>`
     }
     document.querySelector('#change').addEventListener('click', changebgcolor)
  
